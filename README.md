@@ -6,6 +6,9 @@ vim configuration file:
 
 2. reference website:
 
+ctags+cscope+taglist:
+http://guqian110.github.io/pages/2015/01/25/learning_vim_ctags_cscope_taglist.html
+
 cscope:
 http://easwy.com/blog/archives/advanced-vim-skills-cscope/
 
