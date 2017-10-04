@@ -336,7 +336,6 @@ map <leader>pp :setlocal paste!<cr>
 " Toggle paste mode on and off
 set pastetoggle=<F3>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ctags 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
