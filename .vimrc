@@ -124,8 +124,11 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-colorscheme desert
 set background=dark
+colorscheme desert
+" set background=light
+" colorscheme solarized 
+" let g:solarized_termcolors=256
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -426,8 +429,11 @@ map <F6> <Esc>:set nonu<CR>
 " Runtime Path Manipulation 
 execute pathogen#infect()
 
-" NerdTree
-autocmd vimenter * NERDTree
+" Start NERDTree
+autocmd VimEnter * NERDTree
+" Go to previous (last accessed) window.
+autocmd VimEnter * wincmd p
+
 map <C-z> :NERDTreeToggle<CR>
 
 " Auto Close if NERDTree is the last window
