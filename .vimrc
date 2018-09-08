@@ -163,6 +163,7 @@ set smarttab
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
+set softtabstop=4
 
 " Linebreak on 500 characters
 set lbr
@@ -213,10 +214,6 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-
-" moving table
-nmap <C-p> :tabprevious<CR>
-nmap <C-n> :tabnext<CR>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -412,8 +409,12 @@ let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Show_One_File = 1 
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1 
-let Tlist_Auto_Open = 1
+let Tlist_Auto_Open = 0 
 let Tlist_File_Fold_Auto_Close = 1
+let Tlist_WinWidth = 35
+
+" Open Tlist
+map <C-x> :TlistToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User Specific
@@ -428,6 +429,9 @@ execute pathogen#infect()
 " NerdTree
 autocmd vimenter * NERDTree
 map <C-z> :NERDTreeToggle<CR>
+
+" NERDTree Width
+:let NERDTreeWinSize=40
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -454,6 +458,10 @@ set mouse=a
 if !has("nvim")
     set ttymouse=xterm2
     endif
+
+" make
+map <C-m> :make \| bel copen<CR>
+map <C-n> :ccl<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
