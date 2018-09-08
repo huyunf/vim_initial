@@ -430,6 +430,9 @@ execute pathogen#infect()
 autocmd vimenter * NERDTree
 map <C-z> :NERDTreeToggle<CR>
 
+" Auto Close if NERDTree is the last window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 " NERDTree Width
 :let NERDTreeWinSize=40
 
