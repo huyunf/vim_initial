@@ -67,7 +67,7 @@ nmap <leader>w :w!<cr>
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set so=5
 
 " Turn on the WiLd menu
 set wildmenu
@@ -124,11 +124,8 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-set background=dark
-colorscheme desert
-" set background=light
-" colorscheme solarized 
-" let g:solarized_termcolors=256
+set background=light
+colorscheme solarized 
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -337,9 +334,6 @@ map <leader>q :e ~/buffer<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-" Toggle paste mode on and off
-set pastetoggle=<F3>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ctags 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -350,7 +344,7 @@ map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " => cscope 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("cscope")
-	set csprg=/usr/bin/cscope
+	set csprg=/user/bin/cscope
 	set csto=0
     set cscopequickfix=s-,c-,d-,i-,t-,e-
 	set cst
@@ -408,7 +402,7 @@ nmap <C-Space><C-Space>d
 """"""""""""""""""""""""""""""
 " Tag list (ctags)
 """"""""""""""""""""""""""""""
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+let Tlist_Ctags_Cmd = '/user/bin/ctags'
 let Tlist_Show_One_File = 1 
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1 
@@ -420,11 +414,68 @@ let Tlist_WinWidth = 35
 map <C-x> :TlistToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/myconfig/.ycm_extra_conf.py"
+let g:ycm_show_diagnostics_ui = 0
+" let g:loaded_youcompleteme = 1
+
+set conceallevel=2
+set concealcursor=vin
+let g:clang_snippets=1
+let g:clang_conceal_snippets=1
+let g:clang_snippets_engine='clang_complete'
+
+" Complete options (disable preview scratch window, longest removed to aways show menu)
+set completeopt=menu,menuone
+
+" Limit popup menu height
+set pumheight=20
+
+" SuperTab completion fall-back 
+let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Conquegdb
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F5> <Esc>:ConqueGdb <left> 
+
+" Control
+let g:ConqueGdb_Disable = 0
+" Save History
+let g:ConqueGdb_SaveHistory = 1 
+" leader
+let g:ConqueGdb_Leader = '.'
+" color
+let g:ConqueTerm_Color = 2 
+" close window when finish running
+let g:ConqueTerm_CloseOnEnd = 1
+
+" Key Mapping
+let g:ConqueGdb_Run = g:ConqueGdb_Leader . 'r'
+let g:ConqueGdb_Continue = g:ConqueGdb_Leader . 'c'
+let g:ConqueGdb_Next = g:ConqueGdb_Leader . 'n'
+let g:ConqueGdb_Step = g:ConqueGdb_Leader . 's'
+let g:ConqueGdb_Print = g:ConqueGdb_Leader . 'p'
+let g:ConqueGdb_ToggleBreak = g:ConqueGdb_Leader . 'b'
+let g:ConqueGdb_DeleteBreak = g:ConqueGdb_Leader . 'd'
+let g:ConqueGdb_Finish = g:ConqueGdb_Leader . 'f'
+let g:ConqueGdb_Backtrace = g:ConqueGdb_Leader . 't'
+
+" Answer GDB question without got to GDB window
+nnoremap <silent> <Leader>Y :ConqueGdbCommand y<CR>
+nnoremap <silent> <Leader>N :ConqueGdbCommand n<CR>
+
+" window size
+map <leader>1 :resize +10<CR>
+map <leader>2 :resize -10<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User Specific
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " open / close line number
-map <F5> <Esc>:set nu<CR>
-map <F6> <Esc>:set nonu<CR>
+map <F11> <Esc>:set nu<CR>
+map <F12> <Esc>:set nonu<CR>
 
 " Runtime Path Manipulation 
 execute pathogen#infect()
@@ -434,13 +485,14 @@ autocmd VimEnter * NERDTree
 " Go to previous (last accessed) window.
 autocmd VimEnter * wincmd p
 
+" quick key for NERDTree
 map <C-z> :NERDTreeToggle<CR>
 
 " Auto Close if NERDTree is the last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " NERDTree Width
-:let NERDTreeWinSize=40
+:let NERDTreeWinSize=35
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
