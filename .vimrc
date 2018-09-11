@@ -344,7 +344,7 @@ map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " => cscope 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("cscope")
-	set csprg=/user/bin/cscope
+	set csprg=/usr/bin/cscope
 	set csto=0
     set cscopequickfix=s-,c-,d-,i-,t-,e-
 	set cst
@@ -402,7 +402,7 @@ nmap <C-Space><C-Space>d
 """"""""""""""""""""""""""""""
 " Tag list (ctags)
 """"""""""""""""""""""""""""""
-let Tlist_Ctags_Cmd = '/user/bin/ctags'
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Show_One_File = 1 
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1 
